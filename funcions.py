@@ -81,6 +81,87 @@ funcion (a, b) #valor local na funcion
 print (a, b) #valor global
 print (c, d) #mostramos o valor retornado
 
+# 8/10/24
+#Printeamos funciones dentro de funciones y probamos llamadas
+def saudar (lingua):
+    def saudar_en():
+        print("Hi")
+    def saudar_fr():
+        print('Salut')
+    def saudar_gl():
+        print('Ola')
+    def saudar_es():
+        print('Hola')
+
+    lingua_func = {"es": saudar_es, "gl": saudar_gl, "fr": saudar_fr, "en": saudar_en}
+
+    return lingua_func[lingua]
+saudoEspanol = saudar('es')
+saudoEspanol() # sacaria "Hola"
+saudar('en')() # sacaria "Hi"
+print (saudar('es')) # sacaria "<function saudar.<locals>.saudar_es at 0x7fca66987420>"
+
+# As funcions Lambda
+#as funcions lambda serian as funcions anonimas, funcions o metodos que non ten nome, serian de usar y tirar,
+# osea serian para aforrar tanto que no espacio de nomes a etiqueta que poñemos esto e tan rata que xa nin queremos
+# tener nome para non ter esa referencia cruzada, seria como esa maquinilla desechable
+# ten unha limitacion, son tan escuetas que so admiten unha instruccion, o minimo do minimo
+
+
+def cadrado (n):
+    return n**2
+# "vou a explicar compresion de listas"
+lista = [-2,-1,0,1,2,3,4]
+
+#creo unha nova lista onde o valor de cada elemento va a ser o valor de num*2 onde num e cada elemento de lista
+novaLista =[num*2 for num in lista]
+#unha nova lista onde cada elemento de esta lita vai a ser o cadrado de n onde n e cada elemento de esta lista
+novaLista2 =[cadrado (n) for n in lista]
+#Filtra os elementos da lista que son maior que 0
+novaLista3 = [n for n in lista if n>0]
+#Poderian combinarse as 3 cousas para manipular ou transformar a lista de moitas maneras
+novaListaCombinada = [cadrado(num * 2) for num in lista]
+# Funcion lambda, funcion de uso rapido de usar y tirar
+novaLista4 = [(lambda n : n**2)(n) for n in lista]
+
+# Resultado das listas:
+print("Lista original:", lista)
+print("Nova Lista (cada elemento * 2):", novaLista)
+print("Nova Lista 2 (cadrado de cada elemento):", novaLista2)
+print("Nova Lista 3 (elementos > 0):", novaLista3)
+print("Nova Lista Combinada (cadrado de cada elemento * 2):", novaListaCombinada)
+print ("Nova Lista 4 usando lambda: ", novaLista4)
+
+
+#Se temos estas duas listas e queremos facer unha combinacion delas
+l = [0,1,2,3]
+m = ['a', 'b', 'c']
+
+n = [r*s for s in l
+     for r in m
+     if s > 0 ]
+print(n) # ['a', 'b', 'c', 'aa', 'bb', 'cc', 'aaa', 'bbb', 'ccc']
+#Outra manera de facelo seria
+p = []
+for s in l:
+    for r in m:
+        if s > 0:
+            p.append(s*r)
+print(p) # ['a', 'b', 'c', 'aa', 'bb', 'cc', 'aaa', 'bbb', 'ccc']
+# Facendoo coa funcion lambda
+q = [(lambda r,s : r*s)(r,s)
+     for s in l
+     for r in m
+     if s > 0 ]
+print(q) # ['a', 'b', 'c', 'aa', 'bb', 'cc', 'aaa', 'bbb', 'ccc']
+
+
+
+
+
+
+
+
 
 
 
