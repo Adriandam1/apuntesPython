@@ -129,7 +129,7 @@ print(primos)
 
 
 
-# exercicio 7.5 b) realizado con excepcion si se facilita un numero negativo
+# exercicio 7.5.2 realizado con excepcion si se facilita un numero negativo
 class NumeroNegativo (Exception):
     def __str__(self):
         return "Existe un número é negativo na lista"
@@ -151,6 +151,16 @@ try:
 except NumeroNegativo as e:
     print("Erro o haber números negativos")
 
+#Exercicio 7.7 e tamen realizalo con excepcion
+
+def exercicio77(listaNomes):
+# comprobacions: teña 9 caracteres, o ultimo sea letra e os 8 primeros numeros, a letra ten que concordar cos numeros
+    for persoa in listaNomes:
+        #comprobacoion dni ten 9 caracteres
+        if len(persoa[3])==9:
+            #comprobracion los caracteres hasta o penultimo son digitos(ya que el ultimo sera una letra)
+            if persoa[3] [0: -1].isDigit():
+                #comprobacion el ultimo caracter es una letra
 
 
 
