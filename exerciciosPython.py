@@ -2,7 +2,7 @@
 
 # TODO COMENTADO CON COMILLAS PARA EVITAR PROBLEMAS EJECUCION
 
-""" Un programa sinxelo, para calcular cadrados
+''' Un programa sinxelo, para calcular cadrados
 de números
 
 def num_cadrados (num):
@@ -105,11 +105,10 @@ print (fichasDominoEncaixanC('2-3 3-5'))
 print (fichasDominoEncaixanC('2-3 4-5'))
 print (fichasDominoEncaixanC('4-5 5-6'))
 
-"""
-from sentenciasCondicionais import elemento
+'''
 
 ### EXERCICIO 7.5 Dada unha lista de números enteiros, escribir unha función que:
-
+'''
 lista = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 
 # a) Devolte unha lista con tódolos que sexan primos.
@@ -123,9 +122,72 @@ def nPrimo(n):
     return primo
 primos = [n for n in lista if nPrimo(n)]
 print(primos)
+'''
 # b) Devolte a sumatoria e o promedio dos valores.
 
 # c) Devuelva unha lista co factorial de cada un desos números.
+
+
+
+# exercicio 7.5 b) realizado con excepcion si se facilita un numero negativo
+class NumeroNegativo (Exception):
+    def __str__(self):
+        return "Existe un número é negativo na lista"
+
+
+def promedio (lista):
+    suma = 0
+    elementos = 0
+    for numero in lista:
+        if numero <0:
+            raise NumeroNegativo()
+        else:
+            suma = suma + numero
+            elementos = elementos + 1
+    #Otra manera de hacerlo seria: return suma/len(lista)
+    return suma/elementos
+try:
+    print (promedio([2,2,2,-2,2,2,2,2]))
+except NumeroNegativo as e:
+    print("Erro o haber números negativos")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
