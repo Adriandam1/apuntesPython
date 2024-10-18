@@ -130,6 +130,7 @@ print(primos)
 
 
 # exercicio 7.5.2 realizado con excepcion si se facilita un numero negativo
+'''
 class NumeroNegativo (Exception):
     def __str__(self):
         return "Existe un número é negativo na lista"
@@ -150,18 +151,43 @@ try:
     print (promedio([2,2,2,-2,2,2,2,2]))
 except NumeroNegativo as e:
     print("Erro o haber números negativos")
-
+'''
 #Exercicio 7.7 e tamen realizalo con excepcion
 
+class ErroDNI (Exception):
+    def __init__(self, dni):
+        if len (dni)!=9:
+            self.mensaxeErro = "Non ten 9 dixitos"
+        elif not dni[0: -1].isdigit():
+            self.mensaxeErro = "Teñen que ser números os 8 primeros dixitos"
+        elif not dni[-1].isalpha():
+            self.mensaxeErro = "O último dixito ten que ser unha letra"
+        else:
+            self.mensaxeErro = ''
+            #print("Formato dni correcto")
+
+    def __str__(self):
+        return "O dni ten un formato incorrecto, a razón é que " +self.mensaxeErro
+
+#Hemos hecho las comprobaciones en negativo, si estan bien el programa continua en los ifs
 def exercicio77(listaNomes):
 # comprobacions: teña 9 caracteres, o ultimo sea letra e os 8 primeros numeros, a letra ten que concordar cos numeros
     for persoa in listaNomes:
         #comprobacoion dni ten 9 caracteres
-        if len(persoa[3])==9:
-            #comprobracion los caracteres hasta o penultimo son digitos(ya que el ultimo sera una letra)
-            if persoa[3] [0: -1].isDigit():
-                #comprobacion el ultimo caracter es una letra
-
+        if len(persoa[3])!=9:
+            raise ErroDNI(persoa[3])
+        #comprobracion los caracteres hasta o penultimo son digitos(ya que el ultimo sera una letra)
+        elif not persoa[3] [0: -1].isdigit():
+            raise ErroDNI(persoa[3])
+        #comprobacion el ultimo caracter es una letra
+        elif not persoa[3] [-1].isalpha():
+            raise ErroDNI(persoa[3])
+        else:
+            print("Formato dni correcto")
+try:
+    exercicio77([('Manuel', 'case', 'nosda', '12345678r'), ('Pepe', 'Perez', 'Nonsei', '12345678K')])
+except ErroDNI as e:
+    print ("Parece que ocorreu un erro: "+str(e))
 
 
 
